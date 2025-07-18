@@ -21,12 +21,20 @@ const navigationConfig: FuseNavItemType[] = [
     url: "example",
   },
   {
-    id: "tanstack-virtual-demo",
-    title: "TanStack Virtual Demo",
-    translate: "TANSTACK_VIRTUAL_DEMO",
+    id: "tanstack-form-demo",
+    title: "TanStack Form Demo",
+    translate: "TANSTACK_FORM_DEMO",
     type: "item",
-    icon: "lucide:list",
-    url: "tanstack-virtual-demo",
+    icon: "lucide:clipboard-list",
+    url: "tanstack-form-demo",
+  },
+  {
+    id: "react-hook-form-demo",
+    title: "React Hook Form Demo",
+    translate: "REACT_HOOK_FORM_DEMO",
+    type: "item",
+    icon: "lucide:clipboard-list",
+    url: "react-hook-form-demo",
   },
 ];
 
