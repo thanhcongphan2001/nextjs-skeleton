@@ -1,11 +1,11 @@
 entryPoints:
-  http:
-    address: ":80"
+    http:
+        address: ':80'
 
 providers:
-  file:
-    directory: /etc/traefik/dynamic/
-    watch: true
+    file:
+        directory: /etc/traefik/dynamic/
+        watch: true
 
 log:
-  level: INFO
+    level: INFO

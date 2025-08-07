@@ -1,6 +1,6 @@
 services:
     app:
-        image: ttungbmt/ots-maps-frontend:${APP_VERSION:-1.0.0}
+        image: repo-registry.laragis.vn/gtelmaps/embed:${APP_VERSION}
         build:
             context: .
             dockerfile: ./Dockerfile

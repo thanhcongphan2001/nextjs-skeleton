@@ -1,37 +1,37 @@
 http:
-  routers:
-    api-web-router:
-      rule: Host(`local.myaccount.maps.ots.vn`) && PathPrefix(`/api-web`)
-      service: api-web-service
-      entryPoints:
-        - http
-      middlewares:
-        - api-web-headers
-      priority: 100
+    routers:
+        api-web-router:
+            rule: Host(`local.embed.maps.ots.vn`) && PathPrefix(`/api-web`)
+            service: api-web-service
+            entryPoints:
+                - http
+            middlewares:
+                - api-web-headers
+            priority: 100
 
-  services:
-    api-web-service:
-      loadBalancer:
-        servers:
-          - url: "https://maps.ots.vn"
+    services:
+        api-web-service:
+            loadBalancer:
+                servers:
+                    - url: 'https://maps.ots.vn'
 
-  middlewares:
-    api-web-headers:
-      headers:
-        accessControlAllowOriginList:
-          - "*"
-        accessControlAllowMethods:
-          - "GET"
-          - "POST"
-          - "PUT"
-          - "DELETE"
-          - "OPTIONS"
-        accessControlAllowHeaders:
-          - "*"
-        accessControlAllowCredentials: true
-        addVaryHeader: true
-        customRequestHeaders:
-          Host: "maps.ots.vn"
-          Origin: "https://maps.ots.vn"
-          Referer: "https://maps.ots.vn/"
-          User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+    middlewares:
+        api-web-headers:
+            headers:
+                accessControlAllowOriginList:
+                    - '*'
+                accessControlAllowMethods:
+                    - 'GET'
+                    - 'POST'
+                    - 'PUT'
+                    - 'DELETE'
+                    - 'OPTIONS'
+                accessControlAllowHeaders:
+                    - '*'
+                accessControlAllowCredentials: true
+                addVaryHeader: true
+                customRequestHeaders:
+                    Host: 'maps.ots.vn'
+                    Origin: 'https://maps.ots.vn'
+                    Referer: 'https://maps.ots.vn/'
+                    User-Agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'
