@@ -2,8 +2,7 @@
 
 import { useEffect } from 'react';
 import { Typography, Button, Container } from '@mui/material';
-import Link from '@fuse/core/Link';
-import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
+import Link from 'next/link';
 
 type ErrorProps = {
 	error: Error & { digest?: string };
@@ -18,13 +17,7 @@ export default function Error({ error, reset }: ErrorProps) {
 	return (
 		<Container maxWidth="sm">
 			<div className="flex min-h-screen flex-col items-center justify-center text-center">
-				<FuseSvgIcon
-					className="mb-4"
-					color="error"
-					size={64}
-				>
-					lucide:info
-				</FuseSvgIcon>
+				<div className="mb-4 text-6xl text-red-500">⚠️</div>
 				<Typography
 					className="mb-4 text-xl lg:text-3xl"
 					color="error.main"
@@ -40,7 +33,7 @@ export default function Error({ error, reset }: ErrorProps) {
 				<div className="flex gap-2">
 					<Button
 						component={Link}
-						to="/"
+						href="/"
 						variant="contained"
 						color="primary"
 						size="small"

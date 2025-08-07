@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
 function MainPage() {
-	redirect(`/example`);
+	redirect(`/map/embed`);
 	return null;
 }
 

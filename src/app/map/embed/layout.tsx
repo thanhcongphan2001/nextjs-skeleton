@@ -1,18 +1,18 @@
-import MainLayout from "../../../components/MainLayout";
+import SimpleLayout from '../../../components/SimpleLayout';
 
 interface EmbedLayoutProps {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }
 export default function EmbedLayout({ children }: EmbedLayoutProps) {
-  return (
-    <MainLayout
-      navbar={false}
-      toolbar={false}
-      leftSidePanel={false}
-      rightSidePanel={false}
-      footer={false}
-    >
-      {children}
-    </MainLayout>
-  );
+	return (
+		<SimpleLayout
+			navbar={false}
+			toolbar={false}
+			leftSidePanel={false}
+			rightSidePanel={false}
+			footer={false}
+		>
+			{children}
+		</SimpleLayout>
+	);
 }

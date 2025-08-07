@@ -5,8 +5,7 @@ import '../../public/assets/fonts/material-design-icons/MaterialIconsOutlined.cs
 import '../../public/assets/fonts/Geist/geist.css';
 import '../../public/assets/fonts/meteocons/style.css';
 import '../../public/assets/styles/prism.css';
-import { SessionProvider } from 'next-auth/react';
-import { auth } from '@auth/authJs';
+
 import generateMetadata from '../utils/generateMetadata';
 import App from './App';
 
@@ -20,13 +19,11 @@ export const metadata = await generateMetadata({
 	url: 'https://react-material.fusetheme.com'
 });
 
-export default async function RootLayout({
+export default function RootLayout({
 	children
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const session = await auth();
-
 	return (
 		<html lang="en">
 			<head>
@@ -58,12 +55,7 @@ export default async function RootLayout({
 				id="root"
 				className={clsx('loading')}
 			>
-				<SessionProvider
-					basePath="/auth"
-					session={session}
-				>
-					<App>{children}</App>
-				</SessionProvider>
+				<App>{children}</App>
 			</body>
 		</html>
 	);
