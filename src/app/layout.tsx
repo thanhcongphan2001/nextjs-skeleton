@@ -5,6 +5,7 @@ import '../../public/assets/fonts/material-design-icons/MaterialIconsOutlined.cs
 import '../../public/assets/fonts/Geist/geist.css';
 import '../../public/assets/fonts/meteocons/style.css';
 import '../../public/assets/styles/prism.css';
+import 'leaflet/dist/leaflet.css';
 
 import generateMetadata from '../utils/generateMetadata';
 import App from './App';

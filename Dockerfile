@@ -1,3 +1,5 @@
+## Base ########################################################################
+# Use a larger node image to do the build for native deps (e.g., gcc, python)
 FROM node:lts as base
 
 ARG ENV_FILE=.env
@@ -22,6 +24,9 @@ COPY pnpm-lock.* /home/node/app/
 COPY .npmrc /home/node/app/
 
 USER root
+
+# We'll run the app as the `node` user, so put it in their home directory
+WORKDIR /home/node/app
 
 # ## Development #################################################################
 # # Define a development target that installs devDeps and runs in dev mode
@@ -55,17 +60,13 @@ CMD ["serve", "-s", "out"]
 
 ## Deploy ######################################################################
 # Use a stable nginx image
-FROM node:lts-alpine as deploy
-
-WORKDIR /app
-USER node
-
-# Copy only necessary output from production stage
-COPY --from=production /home/node/app/.next .next
-COPY --from=production /home/node/app/public public
-COPY --from=production /home/node/app/package.json .
-COPY --from=production /home/node/app/node_modules node_modules
-
-EXPOSE 3000
-
-CMD ["node_modules/.bin/next", "start"]
+FROM nginx as deploy
+# Copy what we've installed/built from production
+COPY --chown=node:node --from=production /home/node/app/out/ /usr/share/nginx/html/
+# # Overwrite default config
+# COPY ./docker/nginx.conf /etc/nginx/nginx.conf
+# COPY ./docker/default.conf /etc/nginx/conf.d/default.conf
+# # Expose port 80
+EXPOSE 80
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]

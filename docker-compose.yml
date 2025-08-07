@@ -1,6 +1,6 @@
 services:
     app:
-        image: ttungbmt/ots-maps-frontend:cong-dev
+        image: ttungbmt/ots-maps-frontend:${APP_VERSION}
         build:
             context: .
             dockerfile: ./Dockerfile

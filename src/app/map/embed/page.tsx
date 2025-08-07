@@ -2,8 +2,12 @@
 
 import { useState, useEffect, useMemo, useCallback, use } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+
+// Dynamic import Leaflet only on client-side
+let L: any;
+if (typeof window !== 'undefined') {
+	L = require('leaflet');
+}
 
 // Types
 interface PlaceData {
@@ -36,12 +40,14 @@ const ZoomControl = () => {
 	const map = useMap();
 
 	useEffect(() => {
-		const zoomControl = L.control.zoom({ position: 'bottomright' });
-		map.addControl(zoomControl);
+		if (typeof window !== 'undefined' && L) {
+			const zoomControl = L.control.zoom({ position: 'bottomright' });
+			map.addControl(zoomControl);
 
-		return () => {
-			map.removeControl(zoomControl);
-		};
+			return () => {
+				map.removeControl(zoomControl);
+			};
+		}
 	}, [map]);
 
 	return null;
@@ -86,14 +92,16 @@ export default function MapEmbedPage({ searchParams }: MapEmbedProps) {
 		return { lat, lng, zoom };
 	}, [params, placeData]);
 
-	// Initialize Leaflet icons once
+	// Initialize Leaflet icons once (only on client-side)
 	useEffect(() => {
-		delete (L.Icon.Default.prototype as any)._getIconUrl;
-		L.Icon.Default.mergeOptions({
-			iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-			iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-			shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png'
-		});
+		if (typeof window !== 'undefined' && L) {
+			delete (L.Icon.Default.prototype as any)._getIconUrl;
+			L.Icon.Default.mergeOptions({
+				iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+				iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+				shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png'
+			});
+		}
 	}, []);
 
 	// Optimized API calls
