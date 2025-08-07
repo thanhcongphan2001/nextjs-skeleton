@@ -11,12 +11,13 @@ import App from './App';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const metadata = await generateMetadata({
-	title: 'Fuse React - NextJS',
-	description: 'Fuse React - NextJS by FuseTech',
-	cardImage: '/card.png',
+	title: 'Map Embed',
+	description:
+		'Giải pháp nhúng bản đồ cho website và ứng dụng web, hỗ trợ hiển thị vị trí, tìm kiếm địa điểm và tùy chỉnh viewport theo URL parameters.',
+	cardImage: '/meta-image.png',
 	robots: 'follow, index',
 	favicon: '/favicon.ico',
-	url: 'https://react-material.fusetheme.com'
+	url: 'https://3dmaps.gtelots.dev/'
 });
 
 export default function RootLayout({

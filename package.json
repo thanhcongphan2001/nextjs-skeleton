@@ -53,6 +53,7 @@
 	"scripts": {
 		"dev": "next dev --turbopack",
 		"build": "next build",
+		"build:analyze": "ANALYZE=true next build",
 		"start": "next start",
 		"lint": "eslint ./src --config ./eslint.config.mjs",
 		"lint:fix": "eslint --fix ./src --config ./eslint.config.mjs",
