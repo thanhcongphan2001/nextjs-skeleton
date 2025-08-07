@@ -120,8 +120,6 @@
     "start": "next start",
     "lint": "eslint ./src --config ./eslint.config.mjs",
     "lint:fix": "eslint --fix ./src --config ./eslint.config.mjs",
-    "postinstall": "node src/utils/node-scripts/fuse-react-message.js",
-    "poststart": "node src/utils/node-scripts/fuse-react-message.js",
     "audit": "npm audit --production"
   },
   "engines": {

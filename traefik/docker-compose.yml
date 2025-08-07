@@ -1,0 +1,13 @@
+services:
+  traefik:
+    image: traefik:v3.1
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: ingress
+    command:
+      - --configFile=/etc/traefik/traefik.yml
+    volumes:
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml
+      - ./traefik/dynamic:/etc/traefik/dynamic

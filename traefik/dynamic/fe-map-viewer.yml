@@ -1,0 +1,14 @@
+http:
+  routers:
+    fe-map-viewer-router:
+      rule: Host(`local.myaccount.maps.ots.vn`) && PathPrefix(`/`)
+      service: fe-map-viewer-service
+      entryPoints:
+        - "http"
+      priority: 1
+
+  services:
+    fe-map-viewer-service:
+      loadBalancer:
+        servers:
+          - url: "http://app:3000"
